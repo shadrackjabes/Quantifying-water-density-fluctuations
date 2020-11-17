@@ -1,0 +1,12 @@
+[ moleculetype ]
+; molname	nrexcl
+CCC		2
+
+[ atoms ]
+;   nr   type  resnr residue  atom   cgnr     charge       mass
+     1  CC   1    CCC     CC      1      0.0000
+
+[ position_restraints ]
+;iatom type    fx      fy      fz
+           1           1  10000  10000  10000
+

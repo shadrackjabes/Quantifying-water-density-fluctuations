@@ -1,0 +1,13 @@
+#	reading files
+gb: GROUP ATOMS=1-15000:3
+ga: GROUP ATOMS=15001
+time: TIME
+t: MATHEVAL ARG=time VAR=x FUNC=(x/0.001) PERIODIC=NO
+
+#	computing nv
+nv: COORDINATIONNUMBER SPECIESA=ga SPECIESB=gb SWITCH={MATHEVAL FUNC=0.5*(tanh(x+0.6)-tanh(x)) R_0=0.01 D_0=0.6} MEAN
+
+#	applying bias on nv
+sf: MATHEVAL ARG=nv.mean VAR=x FUNC=0.98*((x-(NSTAR))^2) PERIODIC=NO
+b: BIASVALUE ARG=sf
+PRINT ARG=t,nv.mean,b.sf_bias STRIDE=1 FILE=plumed.out

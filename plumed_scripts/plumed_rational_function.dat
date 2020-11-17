@@ -1,0 +1,18 @@
+#	reading files
+#DUMPATOMS STRIDE=1 FILE=dump.xyz
+gb: GROUP ATOMS=1-15000:3
+ga: GROUP ATOMS=15001
+time: TIME
+t: MATHEVAL ARG=time VAR=x FUNC=(x/0.002) PERIODIC=NO
+
+#	computing nv
+nv: COORDINATIONNUMBER SPECIESA=ga SPECIESB=gb R_0=0.6 MEAN
+#nv: COORDINATIONNUMBER SPECIESA=ga SPECIESB=gb SWITCH={TANH R_0=0.01 D_0=0.6} MEAN
+#PRINT ARG=t,nv.mean FILE=plumed.out
+#d1: DISTANCES GROUPA=ga GROUPB=gb LESS_THAN={TANH R_0=0.01 D_0=0.6}
+#PRINT ARG=t,d1.lessthan FILE=distance.out
+
+#	applying bias on nv
+sf: MATHEVAL ARG=nv.mean VAR=x FUNC=0.98*((x-NSTAR)^2) PERIODIC=NO
+b: BIASVALUE ARG=sf
+PRINT ARG=t,nv.mean,b.sf_bias STRIDE=1 FILE=plumed.out

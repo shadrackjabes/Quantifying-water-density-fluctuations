@@ -1,0 +1,14 @@
+#	reading files
+#DUMPATOMS STRIDE=1 FILE=dump.xyz
+gb: GROUP ATOMS=1-15000:3
+ga: GROUP ATOMS=15001
+time: TIME
+t: MATHEVAL ARG=time VAR=x FUNC=(x/0.002) PERIODIC=NO
+
+#	computing nv
+nv: DISTANCES GROUPA=ga GROUPB=gb LESS_THAN={CUSTOM FUNC=1/(1+x^6) R_0=0.6}
+
+#	applying bias on nv
+sf: MATHEVAL ARG=nv.lessthan VAR=x FUNC=0.98*((x-(20))^2) PERIODIC=NO
+b: BIASVALUE ARG=sf
+PRINT ARG=t,nv.lessthan,b.sf_bias STRIDE=1 FILE=plumed.out
