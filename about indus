@@ -1,0 +1,8 @@
+
+Quantifying Density Fluctuations in Volumes of All Shapes and Sizes Using Indirect Umbrella Sampling
+
+
+Water density fluctuations are an important statistical mechanical observable and are related to many-body correlations, as well as hydrophobic hydration and interactions. Local water density fluctuations at a solid-water surface have also been proposed as a measure of its hydrophobicity. These fluctuations can be quantified by calculating the probability, P v (N), of observing N waters in a probe volume of interest v. When v is large, calculating P v (N) using molecular dynamics simulations is challenging, as the probability of observing very few waters is exponentially small, and the standard procedure for overcoming this problem (umbrella sampling in N) leads to undesirable impulsive forces. Patel et al. (J. Phys. Chem. B 114:1632, 2010) have recently developed an indirect umbrella sampling (INDUS) method, that samples a coarse-grained particle number to obtain P v (N) in cuboidal volumes. Here, we present and demonstrate an extension of that approach to volumes of other basic shapes, like spheres and cylinders, as well as to collections of such volumes. We further describe the implementation of INDUS in the NPT ensemble and calculate P v (N) distributions over a broad range of pressures. Our method may be of particular interest in characterizing the hydrophobicity of interfaces of proteins, nanotubes and related systems.
+
+
+https://link.springer.com/article/10.1007%2Fs10955-011-0269-9
