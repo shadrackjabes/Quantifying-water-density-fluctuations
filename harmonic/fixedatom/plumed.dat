@@ -1,0 +1,12 @@
+#	reading files
+gb: GROUP ATOMS=1-15000:3
+ga: FIXEDATOM AT=2.6,2.6,2.6
+time: TIME
+t: MATHEVAL ARG=time VAR=x FUNC=(x/0.001) PERIODIC=NO
+
+#	computing nv
+nv: COORDINATIONNUMBER SPECIESA=ga SPECIESB=gb SWITCH={CUSTOM FUNC=(1-erf(sqrt(3.1415)*0.5*(x))) R_0=0.001 D_0=0.6} MEAN
+
+#	applying bias on nv
+sf: RESTRAINT ARG=nv.mean AT=NSTAR KAPPA=0.98
+PRINT ARG=t,nv.mean,sf.bias STRIDE=1 FILE=plumed.out

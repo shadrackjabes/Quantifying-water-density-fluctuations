@@ -1,0 +1,62 @@
+;RUN CONTROL
+integrator               = md
+dt                       = 0.001
+nsteps                   = 2000000
+;nstcomm 		 = 10
+
+; NON-BONDED INTERACTIONS
+vdwtype                  = cutoff
+rvdw                     = 1.0
+rlist	 		 = 1.0			 
+coulombtype              = PME
+rcoulomb		 = 1.0		
+fourierspacing		 = 0.12
+pme-order		 = 4
+ewald-rtol		 = 1e-5
+epsilon_surface		 = 0
+optimize_fft		 = yes
+cutoff-scheme            = verlet
+
+;TEMPERATURE AND PRESSURE
+; Temperature coupling
+tcoupl                   = v-rescale	
+tc-grps                  = system
+tau_t                    = 0.5
+ref_t                    = 300
+; Pressure coupling
+pcoupl                   = Parrinello-Rahman  
+pcoupltype		 = isotropic
+;nstcouple               = -1
+tau-p		 	 = 2.0
+ref-p			 = 1.0 
+compressibility		 = 4.5e-5
+
+
+;OUTPUT CONTROL
+; .xtc options
+nstxout-compressed       = 1000
+; .edr options
+nstenergy                = 10
+energygrps               = system
+; .trr options
+nstxout                  = 0
+nstvout                  = 0
+nstfout                  = 0
+nstlog                   = 500
+nstcalcenergy		 = 0
+
+;CONSTRAINTS
+constraint-algorithm     = LINCS
+constraints              = all-bonds
+LINCS-order              = 4
+LINCS-iter               = 1		
+
+;NEIGHBOR SEARCHING
+ns_type                  = grid
+pbc                      = xyz
+periodic_molecules	 = yes
+nstlist			 = 10
+
+;GENERATE VELOCITIES FOR STARTUP RUN
+gen_vel                  = yes		
+continuation             = yes	
