@@ -1,0 +1,40 @@
+module purge
+module load intel/env/2018
+module load intel/mpi/2018
+module load fftw/intel/single/sse/3.3.8
+module load gnuplot
+module load gromacs/nompi/cpu/intel/single/2018.4
+
+gmx make_ndx -f ./data_spce.gro < selectq
+echo '[ rigidgroup ]' > aa
+grep "CCC" data_spce.gro |head -1 > a
+sed -i s/"\ CC"// a
+cat a|awk '{print $2}' >> aa  
+cat aa >> index.ndx
+
+echo '[ C ]' > aa
+grep "CCC" data_spce.gro |head -1 > a
+sed -i s/"\ CC"// a
+cat a|awk '{print $2}' >> aa  
+cat aa >> index.ndx
+ 
+echo '[ P ]' > aa
+grep "CCC" data_spce.gro |tail -1 > a
+sed -i s/PP// a
+cat a|awk '{print $2}' >> aa   
+cat aa >> index.ndx
+ 
+echo '[ OW ]' > aa
+grep OW data_spce.gro > a
+sed -i s/OW// a
+cat a|awk '{print $2}' >> aa   
+cat aa >> index.ndx
+ 
+echo '[ HW ]' > aa
+grep HW data_spce.gro > a
+sed -i s/HW1// a
+sed -i s/HW2// a
+cat a|awk '{print $2}' >> aa
+cat aa >> index.ndx
+
+

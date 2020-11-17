@@ -1,0 +1,16 @@
+[ moleculetype ]
+; molname	nrexcl
+CCC 		2
+
+[ atoms ]
+;   nr   type  resnr residue  atom   cgnr     charge       mass
+     1  C   1    CCC     CC      2      0.0000
+     2  P   1    CCC     PP      1      0.0000
+
+[ virtual_sitesn ]
+2 2 1
+
+[ exclusions ]
+1       2
+2       1
+
