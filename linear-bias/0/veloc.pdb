@@ -1,0 +1,8 @@
+TITLE     average velocity
+REMARK    THIS IS A SIMULATION BOX
+CRYST1   50.223   50.223   50.223  90.00  90.00  90.00 P 1           1
+MODEL        1
+ATOM  12520  CC  CCC  4174      25.120  25.110  25.080  1.00  0.00           H
+ATOM  12521  PP  CCC  4174      25.120  25.110  25.080  1.00 10.00           H
+TER
+ENDMDL
